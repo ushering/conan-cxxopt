@@ -1,0 +1,31 @@
+diff --git a/include/cxxopts.hpp b/include/cxxopts.hpp
+index 1381ab3..e635ed8 100644
+--- a/include/cxxopts.hpp
++++ b/include/cxxopts.hpp
+@@ -1377,7 +1377,7 @@ namespace cxxopts
+     constexpr int OPTION_DESC_GAP = 2;
+ 
+     std::basic_regex<char> option_matcher
+-      ("--([[:alnum:]][-_[:alnum:]]+)(=(.*))?|-([[:alnum:]]+)");
++      ("-([[:alnum:]][-_[:alnum:]]+)(=(.*))?|-([[:alnum:]]+)");
+ 
+     std::basic_regex<char> option_specifier
+       ("(([[:alnum:]]),)?[ ]*([[:alnum:]][-_[:alnum:]]*)?");
+@@ -1404,7 +1404,7 @@ namespace cxxopts
+ 
+       if (l.size() > 0)
+       {
+-        result += " --" + toLocalString(l);
++        result += " -" + toLocalString(l);
+       }
+ 
+       auto arg = o.arg_help.size() > 0 ? toLocalString(o.arg_help) : "arg";
+@@ -1731,7 +1731,7 @@ ParseResult::parse(int& argc, char**& argv)
+ 
+   while (current != argc)
+   {
+-    if (strcmp(argv[current], "--") == 0)
++    if (strcmp(argv[current], "-") == 0)
+     {
+       consume_remaining = true;
+       ++current;
